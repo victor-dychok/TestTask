@@ -27,8 +27,20 @@ namespace testTask.Data.Repository
         {
             if (user != null)
             {
-                _context.Users.Remove(user);
-                _context.SaveChanges();
+                if(user.Role.Name == "Admin")
+                {
+                    var admins = _context.Users.Where(Users => Users.Role.Name == "Admin").ToList();
+                    if(admins.Count > 1)
+                    {
+                        _context.Users.Remove(user);
+                        _context.SaveChanges();
+                    }
+                }
+                else
+                {
+                    _context.Users.Remove(user);
+                    _context.SaveChanges();
+                }
             }
         }
 

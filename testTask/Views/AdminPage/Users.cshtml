@@ -6,12 +6,16 @@
     {
         <div class="user-item">
             <div class="inner-card">
+                <p>@el.Id</p>
                 <p>@el.FirstName</p>
                 <p>@el.LastName</p>
+                <p>@el.Role.Name</p>
                 <p>@el.Email</p>
                 <p>@el.Login</p>
 
                 <a class="outlined-button_smal" asp-controller="AdminPage" asp-action="DeleteUser" asp-route-itemId=@el.Id>Удалить</a>
+                <a class="outlined-button_smal mt-2" asp-controller="AdminPage" asp-action="MakeUser" asp-route-itemId=@el.Id>Подтвердить регистрацию</a>
+                <a class="outlined-button_smal mt-2" asp-controller="AdminPage" asp-action="MakeAdmin" asp-route-itemId=@el.Id>Назначить администратором</a>
                 <a class="main-button_smal" asp-controller="AdminPage" asp-action="EditUser" asp-route-itemId=@el.Id>Изменить</a>
                 
             </div>

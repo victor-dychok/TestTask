@@ -1,6 +1,20 @@
 ﻿@model testTask.Views.ViewModel.AllSightsModel
 
+
+<div>
+    <a class="main-button_smal w-25" asp-controller="Articles" asp-action="SortedByName">Отсортировать по названию</a>
+    <h4>Фильтры по областям</h4>
+    <div class="nav">
+        @foreach (var reg in Model.Regions)
+        {
+            <a class="outlined-button_smal w-10" asp-controller="Articles" asp-action="FilterByRegion" asp-route-itemId=@reg.Id>@reg.Region</a>
+        }
+        <a class="outlined-button_smal w-25" asp-controller="Articles" asp-action="RemoveRegionFilter">Сбросить фильтр</a>
+    </div>
+</div>
+
 <div class="sight-container">
+
 
     @foreach (var el in Model.Sights)
     {

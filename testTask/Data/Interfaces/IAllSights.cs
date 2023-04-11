@@ -9,5 +9,7 @@ namespace testTask.Data.Interfaces
         void AddSight(Sight sight);
         void UpdateSight(Sight sight);
         void DeleteSight(Sight sight);
+
+        List<Location> GetOriginalRegions();
     }
 }

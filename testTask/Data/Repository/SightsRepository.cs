@@ -46,6 +46,19 @@ namespace testTask.Data.Repository
             }
         }
 
+        public List<Location> GetOriginalRegions()
+        {
+            List<Location> regions = new List<Location>();
+            foreach(var location in _context.Locations)
+            {
+                if(!regions.Any(n => n.Region == location.Region))
+                {
+                    regions.Add(location);
+                }
+            }
+            return regions;
+        }
+
         public void UpdateSight(Sight sight)
         {
             if(sight != null)

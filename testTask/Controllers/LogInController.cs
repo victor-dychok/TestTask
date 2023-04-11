@@ -53,7 +53,7 @@ namespace testTask.Controllers
 
         public IActionResult Complete()
         {
-            ViewBag.Message = $"Вход выполнен с ролью {_currentUser.Role.Name}";
+            ViewBag.Message = $"Регистрация вашего аккаунта не подтверждена администратором";
             return View();
         }
 
@@ -73,7 +73,7 @@ namespace testTask.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

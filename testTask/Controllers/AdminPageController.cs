@@ -55,10 +55,32 @@ namespace testTask.Controllers
             _currentUser.LastName = userWithRoles.User.LastName;
             _currentUser.Email = userWithRoles.User.Email;
             _currentUser.Login = userWithRoles.User.Login;
-            _currentUser.Role = userWithRoles.User.Role;
-            _currentUser.Password = HashPasswordHelper.GetHashPassword(userWithRoles.User.Password);
 
             _users.UpdateUser(_currentUser);
+
+            return RedirectToAction("Users");
+        }
+
+        public IActionResult MakeUser(int itemId)
+        {
+            var user = _users.Users.FirstOrDefault(w => w.Id == itemId);
+            if(user != null)
+            {
+                _users.SetRoleUser(ref user);
+            }
+            _users.UpdateUser(user);
+
+            return RedirectToAction("Users");
+        }
+
+        public IActionResult MakeAdmin(int itemId)
+        {
+            var user = _users.Users.FirstOrDefault(w => w.Id == itemId);
+            if (user != null)
+            {
+                _users.SetRoleAdmin(ref user);
+            }
+            _users.UpdateUser(user);
 
             return RedirectToAction("Users");
         }
@@ -68,7 +90,6 @@ namespace testTask.Controllers
             _users.DeleteUser(_users.Users.FirstOrDefault(i => i.Id == itemId));
             return RedirectToAction("Users");
         }
-
 
         public IActionResult Articles()
             => View(new AllSightsModel { Sights = _sights.Sights.ToList() });
