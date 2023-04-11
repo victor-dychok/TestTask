@@ -1,0 +1,162 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  color: black;
+}
+
+.sight-container {
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    display:flex;
+}
+
+.text-lines-container {
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    padding: 20px;
+}
+
+.simple-link {
+    text-decoration: none;
+    color: black;
+}
+
+.simple-link:hover {
+    text-decoration: none;
+    color: black;
+}
+
+div:hover {
+    color: black;
+}
+
+.header-text {
+    margin: 0;
+    margin-right: auto;
+    font-size: 200%;
+}
+
+.header-button {
+    margin: auto 10px;
+    cursor: pointer;
+}
+
+.main-body {
+    padding: 10px 20px;
+}
+
+.main-button {
+    padding: 20px 10px;
+    width: 50%;
+    margin: 0 auto 50px auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    background-color: #45444E;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    transition: background-color linear 0.2s;
+}
+
+.main-button:hover {
+    color: white;
+    background-color: #49629d;
+}
+
+.main-button_smal {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    color: white;
+    background-color: #45444E;
+    border-color: #45444E;
+    padding: 10px;
+    margin: 10px 20px;
+    transition: background-color linear 0.2s;
+}
+
+.main-button_smal:hover {
+    color: white;
+    background-color: #49629d;
+}
+
+.outlined-button_smal {
+    cursor: pointer;
+    text-decoration: none;
+    color: #45444E;
+    background-color: white;
+    padding: 10px;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border: solid;
+    font-size: 100%;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    transition: border-color linear 0.2s;
+    transition: color linear 0.2s;
+}
+
+.outlined-button_smal:hover {
+    border-color: #49629d;
+    color: #49629d;
+}
+
+.sight-item {
+    margin: 10px;
+    padding: 10px 0;
+    background-color: white;
+    width: 40%;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.user-item {
+    margin: 10px auto;
+    padding: 10px;
+    width: 30%;
+    background-color: white;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.inner-card {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 4%;
+    box-shadow: 0px 0px 10px gray;
+}
+
+.inner-card:hover {
+    box-shadow: 0px 0px 15px gray;
+}
+
+.sight-photo {
+    width: 100%;
+    margin: 0 auto;
+}

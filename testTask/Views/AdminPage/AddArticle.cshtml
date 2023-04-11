@@ -1,0 +1,67 @@
+﻿@model testTask.Data.Models.Sight
+
+<div class="row text-lines-container">
+    <h3>Добавление статьи</h3>
+    <form asp-action="AddArticle" method="post" class="form-horizontal">
+        <div class="mt-2">
+            <label asp-for="Name">Название</label>
+            <div>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <label asp-for="Description">Описание</label>
+            <div>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <label asp-for="Image">Img</label>
+            <div>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <label asp-for="Location.Region">Область</label>
+            <div>
+                <input asp-for="Location.Region" class="form-control" />
+                <span asp-validation-for="Location.Region" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <label asp-for="Location.District">Район</label>
+            <div>
+                <input asp-for="Location.District" class="form-control" />
+                <span asp-validation-for="Location.District" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+            <label asp-for="Location.Locality">Населенный пункт</label>
+            <div>
+                <input asp-for="Location.Locality" class="form-control" />
+                <span asp-validation-for="Location.Locality" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="mt-2">
+            <label asp-for="Location.GeoPosition">Геоданные</label>
+            <div>
+                <input asp-for="Location.GeoPosition" class="form-control" />
+                <span asp-validation-for="Location.GeoPosition" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mt-2">
+        </div>
+        <input class="btn btn-success mt-4" type="submit" value="Сохранить изменения" />
+    </form>
+</div>

@@ -1,0 +1,21 @@
+﻿@model testTask.Data.Models.Sight
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Region</th>
+            <th>District</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Name</td>
+            <td>@Model.Description</td>
+            <td>@Model.Location.Region</td>
+            <td>@Model.Location.District</td>
+        </tr>
+        
+    </tbody>
+</table>

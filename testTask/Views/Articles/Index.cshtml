@@ -1,0 +1,18 @@
+﻿@model testTask.Views.ViewModel.AllSightsModel
+
+<div class="sight-container">
+
+    @foreach (var el in Model.Sights)
+    {
+        <div class="sight-item">
+            <a class="simple-link" asp-controller="Articles" asp-action="AllSights" asp-route-itemId=@el.Id>
+                <div class="inner-card">
+                    <img class="sight-photo" src="@el.Image" />
+                    <p>@el.Name</p>
+                    <p>@el.Description</p>
+                    <p>@el.Location.Locality - @el.Location.Region обл. @el.Location.District р-н</p>
+                </div>
+            </a>
+        </div>
+    }
+</div>

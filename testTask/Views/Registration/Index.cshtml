@@ -1,0 +1,43 @@
+﻿@model testTask.Data.Models.User
+
+
+<div class="row text-lines-container">
+    <h3>Регистрация</h3>
+    <form asp-action="Index" method="post" class="form-horizontal">
+        <div class="mt-2">
+            <label asp-for="FirstName">Имя</label>
+            <div>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class ="mt-2">
+            <label asp-for="LastName">Фамилия</label>
+            <div>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mt-2">
+            <label asp-for="Email">Адрес электронной почты</label>
+            <div>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mt-2">
+            <label asp-for="Login">Логин</label>
+            <div>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mt-2">
+            <label asp-for="Password">Пароль</label>
+            <div class="col-md-5">
+                @Html.PasswordFor(m=>m.Password)
+            </div>
+        </div>
+        <input class="btn btn-success mt-4" type="submit" value="Зарегистрироваться" />
+    </form>
+</div>

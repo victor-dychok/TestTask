@@ -1,0 +1,21 @@
+﻿@model testTask.Views.ViewModel.AllUsersModel
+
+<div class="sight-container">
+
+    @foreach (var el in Model.Users)
+    {
+        <div class="user-item">
+            <div class="inner-card">
+                <p>@el.FirstName</p>
+                <p>@el.LastName</p>
+                <p>@el.Email</p>
+                <p>@el.Login</p>
+
+                <a class="outlined-button_smal" asp-controller="AdminPage" asp-action="DeleteUser" asp-route-itemId=@el.Id>Удалить</a>
+                <a class="main-button_smal" asp-controller="AdminPage" asp-action="EditUser" asp-route-itemId=@el.Id>Изменить</a>
+                
+            </div>
+        </div>
+    }
+
+</div>
