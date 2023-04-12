@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using testTask.Data.Encoding;
 using testTask.Data.Interfaces;
 using testTask.Data.Models;
 
@@ -11,6 +12,27 @@ namespace testTask.Data.Repository
         public UserRepository(AppContext context)
         {
             _context = context;
+
+            if(!_context.Roles.Any())
+            {
+                _context.Roles.Add(new UserRole() { Name = "Admin" });
+                _context.Roles.Add(new UserRole() { Name = "User" });
+                _context.Roles.Add(new UserRole() { Name = "Unregistred" });
+                _context.SaveChanges();
+            }
+            if(!_context.Users.Any())
+            {
+                _context.Users.Add(new User() 
+                {
+                    FirstName = "-",
+                    LastName = "-",
+                    Login = "admin",
+                    Email = "-",
+                    Password = HashPasswordHelper.GetHashPassword("admin"),
+                    Role = _context.Roles.First(r => r.Name == "Admin"),
+                });
+                _context.SaveChanges();
+            }
         }
 
         public IEnumerable<User> Users => _context.Users.Include(r => r.Role);
@@ -19,8 +41,11 @@ namespace testTask.Data.Repository
         {
             if(user != null)
             {
-                _context.Users.Add(user);
-                _context.SaveChanges();
+                if(!_context.Users.Any(u => u.Email == u.Email))
+                {
+                    _context.Users.Add(user);
+                    _context.SaveChanges();
+                }
             }
         }
         public void DeleteUser(User user)
@@ -65,7 +90,7 @@ namespace testTask.Data.Repository
 
         public void SetRoleUnregistred(ref User user)
         {
-            user.Role = _context.Roles.First(r => r.Name == "Unregistered");
+            user.Role = _context.Roles.First(r => r.Name == "Unregistred");
         }
 
         public IEnumerable<UserRole> GetRoles() => _context.Roles;
@@ -74,7 +99,7 @@ namespace testTask.Data.Repository
         {
             var user = _context.Users
                 .Include(u => u.Role)
-                .FirstOrDefault(u => u.Login == login);
+                .FirstOrDefault(u => u.Login == login && u.Password == password);
 
             return user;
         }

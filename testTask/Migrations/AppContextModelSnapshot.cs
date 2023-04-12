@@ -58,6 +58,9 @@ namespace testTask.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Contents")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -65,6 +68,9 @@ namespace testTask.Migrations
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Img")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");

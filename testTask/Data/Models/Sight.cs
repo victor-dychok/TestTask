@@ -10,7 +10,8 @@ namespace testTask.Data.Models
         public string Image { get; set; }
         public virtual Location Location { get; set; }
 
-        /*[AllowHtml]
+        /*
+        [AllowHtml]
         public string? Contents { get; set; }
         public byte[]? Img { get; set; }*/
     }

@@ -2,6 +2,7 @@
 using testTask.Data.Encoding;
 using testTask.Data.Interfaces;
 using testTask.Data.Models;
+using testTask.Models;
 
 namespace testTask.Controllers
 {
@@ -17,12 +18,23 @@ namespace testTask.Controllers
         public IActionResult Index() => View();
         
         [HttpPost]
-        public IActionResult Index(User user)
+        public IActionResult Index(RegistrationUserModel user)
         {
-            user.Password = HashPasswordHelper.GetHashPassword(user.Password);
-            _users.SetRoleUnregistred(ref user);
-            _users.AddUser(user);
-            return RedirectToAction("Complete");
+            if(ModelState.IsValid)
+            {
+                var dbUser = new User();
+
+                dbUser.FirstName = user.FirstName;
+                dbUser.LastName = user.LastName;
+                dbUser.Email = user.Email;
+                dbUser.Login = user.Login;
+                dbUser.Password = HashPasswordHelper.GetHashPassword(user.Password); ;
+
+                _users.SetRoleUnregistred(ref dbUser);
+                _users.AddUser(dbUser);
+                return RedirectToAction("Complete");
+            }
+            return View();
         }
 
         public IActionResult Complete()

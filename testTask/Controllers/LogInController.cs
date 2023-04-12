@@ -6,6 +6,7 @@ using System.Security.Claims;
 using testTask.Data.Encoding;
 using testTask.Data.Interfaces;
 using testTask.Data.Models;
+using testTask.Models;
 
 namespace testTask.Controllers
 {
@@ -23,30 +24,38 @@ namespace testTask.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(User user)
+        public async Task<IActionResult> Index(LogInUserModel user)
         {
-
-            var person = _users.Authenticate(user.Login, HashPasswordHelper.GetHashPassword(user.Password));
-
-            if (person != null)
+            if(ModelState.IsValid)
             {
-                _currentUser = person;
+                var person = _users.Authenticate(user.Login, HashPasswordHelper.GetHashPassword(user.Password));
 
-                await Authorize(_currentUser);
+                if (person != null)
+                {
+                    _currentUser = person;
 
-                if (_currentUser.Role.Name == "Admin")
-                {
-                    return RedirectToAction("Index", "AdminPage");
+                    await Authorize(_currentUser);
+
+                    if (_currentUser.Role.Name == "Admin")
+                    {
+                        return RedirectToAction("Index", "AdminPage");
+                    }
+                    else if (_currentUser.Role.Name == "User")
+                    {
+                        return RedirectToAction("Index", "Articles");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Complete");
+                    }
                 }
-                else if (_currentUser.Role.Name == "User")
-                {
-                    return RedirectToAction("Index", "Articles");
-                }
+
                 else
                 {
-                    return RedirectToAction("Complete");
+                    return RedirectToAction("Unsuccesfull");
                 }
             }
+
 
             return View(user);
         }
@@ -54,6 +63,12 @@ namespace testTask.Controllers
         public IActionResult Complete()
         {
             ViewBag.Message = $"Регистрация вашего аккаунта не подтверждена администратором";
+            return View();
+        }
+
+        public IActionResult Unsuccesfull()
+        {
+            ViewBag.Message = $"Неудачная попытка авторизации";
             return View();
         }
 
